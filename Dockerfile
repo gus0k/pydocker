@@ -22,4 +22,7 @@ COPY jupyter_notebook_config.py /home/guso/.jupyter/jupyter_notebook_config.py
 RUN jupyter labextension install jupyter-matplotlib
 RUN jupyter labextension install @jupyterlab/toc
 
+RUN mkdir code
+ENV PYTHONPATH="/home/guso/code:${PYTHONPATH}"
+RUN touch code/__init__.py
 CMD ["/home/guso/.local/bin/jupyter-lab", "--NotebookApp.token='abcd1234'"]
